@@ -14,10 +14,10 @@ def call(String effectiveDate, String branch, String ticket) {
   git clone git@github.com:puppetlabs/pe-installer-shim ./pe-installer-shim
   cd pe-installer-shim
   git checkout "${branch}"
-  sed -i "/readonly EFFECTIVE_DATE=.*/c\\readonly EFFECTIVE_DATE='${effectiveDate}'" ./puppet-enterprise-installer
+  sed -i \"/readonly EFFECTIVE_DATE=.*/c\\readonly EFFECTIVE_DATE='${effectiveDate}'\" ./puppet-enterprise-installer
   git add puppet-enterprise-installer
 
-  git commit -m "(${ticket}) Update EFFECTIVE_DATE to ${effectiveDate}"
+  git commit -m \"(${ticket}) Update EFFECTIVE_DATE to ${effectiveDate}\"
   git push origin "${branch}"
 
   # Cleanup
