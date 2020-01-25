@@ -6,7 +6,8 @@ def call(String version, String branch_from) {
     println "${version} is an invalid version"
     throw new Exception("Invalid version")
   }
-
+  
+  PE_VERSION="${version}"
 
   sh """
   #!/usr/bin/env bash
@@ -15,11 +16,11 @@ def call(String version, String branch_from) {
   git clone git@github.com:puppetlabs/${GITHUB_PROJECT} ./${GITHUB_PROJECT}
   cd ${GITHUB_PROJECT}
 
-  PE_VERSION=${version}
+#  PE_VERSION=${version}
   echo version is ${version} and $PE_VERSION and ${VERSION}
   echo branch from ${BRANCH_FROM}
 
-  if [ -z \"$BRANCH_FROM\" ]
+  if [ -z \"$branch_from\" ]
   then
     FAMILY=`echo $PE_VERSION | sed \"s/\\(.*\\..*\\)\\..*/\\1/\"`
     BRANCH_FOUND=`git branch --list $FAMILY.x`
@@ -32,7 +33,7 @@ def call(String version, String branch_from) {
       git checkout ${FAMILY}.x
     fi
   else
-    git checkout ${BRANCH_FROM}
+    git checkout ${branch_from}
   fi
 
   git checkout -b ${PE_VERSION}-release
