@@ -2,7 +2,6 @@ def call(String version, String branch_from) {
 
   if (version =~ '^20[0-9]{2}[.]([0-9]*)[.]([0-9]*)$') {
     println "${version} is a valid version"
-    println "line two"
   } else {
     println "${version} is an invalid version"
     throw new Exception("Invalid version")
@@ -27,21 +26,21 @@ def call(String version, String branch_from) {
     BRANCH_FOUND=`git branch --list \$FAMILY.x`
 
     # is the X.Y.Z branch isn't created then we're basing inital checkout off of master
-    if [ -z \"$BRANCH_FOUND\" ]
+    if [ -z \"\$BRANCH_FOUND\" ]
     then
       git checkout master
     else
-      git checkout ${FAMILY}.x
+      git checkout \${FAMILY}.x
     fi
   else
     git checkout ${branch_from}
   fi
 
-  git checkout -b ${PE_VERSION}-release
-  git push origin ${PE_VERSION}-release
+  git checkout -b \${PE_VERSION}-release
+  git push origin \${PE_VERSION}-release
 
   cd ..
-  rm -rf ${GITHUB_PROJECT}
+  rm -rf \${GITHUB_PROJECT}
 
   """
 }
