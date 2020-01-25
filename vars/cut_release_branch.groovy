@@ -16,10 +16,12 @@ def call(String version) {
   cd ${GITHUB_PROJECT}
 
   PE_VERSION=${version}
+  echo version is ${version} and $PE_VERSION and ${VERSION}
+  echo branch from ${BRANCH_FROM}
 
   if [ -z \"$BRANCH_FROM\" ]
   then
-    FAMILY=`echo $PE_VERSION | sed \"s/\(.*\..*\)\..*/\1/\"`
+    FAMILY=`echo $PE_VERSION | sed \"s/\\(.*\\..*\\)\\..*/\\1/\"`
     BRANCH_FOUND=`git branch --list $FAMILY.x`
 
     # is the X.Y.Z branch isn't created then we're basing inital checkout off of master
