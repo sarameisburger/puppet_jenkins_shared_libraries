@@ -6,8 +6,6 @@ def call(String version, String branch_from) {
     println "${version} is an invalid version"
     throw new Exception("Invalid version")
   }
-  
-  PE_VERSION="${version}"
 
   sh """
   #!/usr/bin/env bash
@@ -16,7 +14,7 @@ def call(String version, String branch_from) {
   git clone git@github.com:puppetlabs/${GITHUB_PROJECT} ./${GITHUB_PROJECT}
   cd ${GITHUB_PROJECT}
 
-#  PE_VERSION=${version}
+  PE_VERSION=\"${version}\"
   echo version is ${version} and $PE_VERSION and ${VERSION}
   echo branch from ${BRANCH_FROM}
 
