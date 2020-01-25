@@ -17,13 +17,13 @@ def call(String version) {
 
   PE_VERSION=${version}
 
-  if [ -z "$BRANCH_FROM" ]
+  if [ -z \"$BRANCH_FROM\" ]
   then
-    FAMILY=`echo $PE_VERSION | sed "s/\(.*\..*\)\..*/\1/"`
+    FAMILY=`echo $PE_VERSION | sed \"s/\(.*\..*\)\..*/\1/\"`
     BRANCH_FOUND=`git branch --list $FAMILY.x`
 
     # is the X.Y.Z branch isn't created then we're basing inital checkout off of master
-    if [ -z "$BRANCH_FOUND" ]
+    if [ -z \"$BRANCH_FOUND\" ]
     then
       git checkout master
     else
