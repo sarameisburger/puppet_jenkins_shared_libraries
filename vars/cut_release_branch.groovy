@@ -14,13 +14,14 @@ def call(String version, String branch_from) {
   git clone git@github.com:puppetlabs/${GITHUB_PROJECT} ./${GITHUB_PROJECT}
   cd ${GITHUB_PROJECT}
 
-  PE_VERSION=\"${version}\"
+#  PE_VERSION=\"${version}\"
   echo version is ${version} and $PE_VERSION and ${VERSION}
   echo branch from ${BRANCH_FROM}
 
   if [ -z \"$branch_from\" ]
   then
-    FAMILY=`echo $PE_VERSION | sed \"s/\\(.*\\..*\\)\\..*/\\1/\"`
+#    FAMILY=`echo \$PE_VERSION | sed \"s/\\(.*\\..*\\)\\..*/\\1/\"`
+    FAMILY=`echo ${version} | sed \"s/\\(.*\\..*\\)\\..*/\\1/\"`
     BRANCH_FOUND=`git branch --list \$FAMILY.x`
 
     # is the X.Y.Z branch isn't created then we're basing inital checkout off of master
@@ -34,8 +35,8 @@ def call(String version, String branch_from) {
     git checkout ${branch_from}
   fi
 
-  git checkout -b \${PE_VERSION}-release
-  git push origin \${PE_VERSION}-release
+  git checkout -b ${version}-release
+  git push origin ${version}-release
 
   cd ..
   rm -rf \${GITHUB_PROJECT}
