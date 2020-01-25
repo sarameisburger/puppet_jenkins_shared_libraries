@@ -2,6 +2,7 @@ def call(String version, String branch_from) {
 
   if (version =~ '^20[0-9]{2}[.]([0-9]*)[.]([0-9]*)$') {
     println "${version} is a valid version"
+    println "line two"
   } else {
     println "${version} is an invalid version"
     throw new Exception("Invalid version")
@@ -23,7 +24,7 @@ def call(String version, String branch_from) {
   if [ -z \"$branch_from\" ]
   then
     FAMILY=`echo $PE_VERSION | sed \"s/\\(.*\\..*\\)\\..*/\\1/\"`
-    BRANCH_FOUND=`git branch --list $FAMILY.x`
+    BRANCH_FOUND=`git branch --list \$FAMILY.x`
 
     # is the X.Y.Z branch isn't created then we're basing inital checkout off of master
     if [ -z \"$BRANCH_FOUND\" ]
