@@ -14,13 +14,8 @@ def call(String version, String branch_from) {
   git clone git@github.com:puppetlabs/${GITHUB_PROJECT} ./${GITHUB_PROJECT}
   cd ${GITHUB_PROJECT}
 
-#  PE_VERSION=\"${version}\"
-  echo version is ${version} and $PE_VERSION and ${VERSION}
-  echo branch from ${BRANCH_FROM}
-
   if [ -z \"$branch_from\" ]
   then
-#    FAMILY=`echo \$PE_VERSION | sed \"s/\\(.*\\..*\\)\\..*/\\1/\"`
     FAMILY=`echo ${version} | sed \"s/\\(.*\\..*\\)\\..*/\\1/\"`
     BRANCH_FOUND=`git branch --list \$FAMILY.x`
 
