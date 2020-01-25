@@ -1,4 +1,4 @@
-def call(String version) {
+def call(String version, String branch_from) {
 
   if (version =~ '^20[0-9]{2}[.]([0-9]*)[.]([0-9]*)$') {
     println "${version} is a valid version"
