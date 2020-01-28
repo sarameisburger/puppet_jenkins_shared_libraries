@@ -8,7 +8,7 @@ def call(String version, String branch_from) {
   }
   //Execute bash script, catch and print output and errors
   def sout = new StringBuilder(), serr = new StringBuilder()
-  def cmd = cmd = ["/bin/bash", "-c", "bash/cut_release_branch.sh", version, branch_from]
+  def cmd = ["/bin/bash", "-c", "bash/cut_release_branch.sh", version, branch_from]
   cmd.execute()
   cmd.consumeProcessOutput(sout, serr)
   println "Bash output:\n$sout\n\n$serr"
