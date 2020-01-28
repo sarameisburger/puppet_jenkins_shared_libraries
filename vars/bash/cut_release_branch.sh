@@ -15,17 +15,17 @@
     exit 1
   fi
 
-  if [ -z \"$branch_from\" ]
+  if [ -z "$branch_from" ]
   then
-    FAMILY=`echo ${version} | sed \"s/\\(.*\\..*\\)\\..*/\\1/\"`
-    BRANCH_FOUND=`git branch --list \$FAMILY.x`
+    FAMILY=`echo ${version} | sed "s/\(.*\..*\)\..*/\1/"`
+    BRANCH_FOUND=`git branch --list $FAMILY.x`
 
     # is the X.Y.Z branch isn't created then we're basing inital checkout off of master
-    if [ -z \"\$BRANCH_FOUND\" ]
+    if [ -z "$BRANCH_FOUND" ]
     then
       git checkout master
     else
-      git checkout \${FAMILY}.x
+      git checkout ${FAMILY}.x
     fi
   else
     git checkout ${branch_from}
@@ -35,4 +35,4 @@
   git push origin ${version}-release
 
   cd ..
-  rm -rf \${GITHUB_PROJECT}
+  rm -rf ${GITHUB_PROJECT}
