@@ -8,5 +8,5 @@ def call(String version, String branch_from) {
   }
 
   def cmd = ["/bin/bash", "-c", "bash/cut_release_branch.sh", version, branch_from]
-  cmd.execute()
+  println cmd.execute().text
 }
