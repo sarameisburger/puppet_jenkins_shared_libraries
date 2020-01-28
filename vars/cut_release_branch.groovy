@@ -7,6 +7,6 @@ def call(String version, String branch_from) {
     throw new Exception("Invalid version")
   }
 
-  def cmd = ["/usr/bin/env bash", "-c", "bash/cut_release_branch.sh", version, branch_from]
+  def cmd = ["/bin/bash", "-c", "bash/cut_release_branch.sh", version, branch_from]
   cmd.execute()
 }

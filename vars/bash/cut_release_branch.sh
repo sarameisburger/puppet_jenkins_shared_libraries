@@ -1,4 +1,3 @@
-  #!/usr/bin/env bash
   #USAGE: cut_release_branch <version> <branch_from>
   
   version=$1
