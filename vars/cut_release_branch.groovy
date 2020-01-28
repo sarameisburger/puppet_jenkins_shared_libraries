@@ -14,7 +14,7 @@ def call(String version, String branch_from) {
   git clone git@github.com:puppetlabs/${GITHUB_PROJECT} ./${GITHUB_PROJECT}
   cd ${GITHUB_PROJECT}
 
-  git ls-remote | grep ${version}-release
+  git ls-remote | grep "${version}"-release
 
   if [[ ( "$?" == 0 ) ]]
   then
