@@ -7,9 +7,15 @@ def call(String version, String branch_from) {
     throw new Exception("Invalid version")
   }
   //Execute bash script, catch and print output and errors
-  // def sout = new StringBuilder(), serr = new StringBuilder()
   def cmd = ["/bin/bash", "-c", "bash/cut_release_branch.sh", version, branch_from]
-  println cmd.execute().text
-  // proc.consumeProcessOutput(sout, serr)
-  // println "Bash output:\n$sout\n\n$serr"
+  cmd.execute().with{
+    def output = new StringWriter()
+    def error = new StringWriter()
+    //wait for process ended and catch stderr and stdout.
+    it.waitForProcessOutput(output, error)
+    //check there is no error
+    println "Error:$error\n"
+    println "Output:$output\n"
+    println "Exit Code: ${it.exitValue()}\m"
+  }
 }
