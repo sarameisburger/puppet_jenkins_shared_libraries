@@ -16,6 +16,6 @@ def call(String version, String branch_from) {
     //check there is no error
     println "Error:$error\n"
     println "Output:$output\n"
-    println "Exit Code: ${it.exitValue()}\m"
+    println "Exit Code: ${it.exitValue()}"
   }
 }
