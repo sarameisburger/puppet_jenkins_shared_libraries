@@ -1,5 +1,6 @@
+  #!/bin/bash
+
   #USAGE: cut_release_branch <version> <branch_from>
-  
   version=$1
   branch_from=$2
 

@@ -7,15 +7,9 @@ def call(String version, String branch_from) {
     throw new Exception("Invalid version")
   }
   //Execute bash script, catch and print output and errors
-  def cmd = ["/usr/bin/env bash", "-c", "vars/bash/cut_release_branch.sh", version, branch_from]
-  cmd.execute().with{
-    def output = new StringWriter()
-    def error = new StringWriter()
-    //wait for process ended and catch stderr and stdout.
-    it.waitForProcessOutput(output, error)
-    //check there is no error
-    println "Error:$error\n"
-    println "Output:$output\n"
-    println "Exit Code: ${it.exitValue()}"
+  node {
+    sh "curl -O https://raw.githubusercontent.com/puppetlabs/puppet_jenkins_shared_libraries/test/cut-release-work/vars/bash/cut_release_branch.sh"
+    sh "chmod +x cut_release_branch.sh"
+    sh "./cut_release_branch.sh $version $branch_from"
   }
 }
