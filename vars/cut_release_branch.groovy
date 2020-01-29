@@ -10,6 +10,6 @@ def call(String version, String branch_from) {
   def sout = new StringBuilder(), serr = new StringBuilder()
   def cmd = ["/bin/bash", "-c", "bash/cut_release_branch.sh", version, branch_from]
   proc = cmd.execute()
-  proc.consumeProcessOutput(sout, serr)
-  println "Bash output:\n$sout\n\n$serr"
+  // proc.consumeProcessOutput(sout, serr)
+  // println "Bash output:\n$sout\n\n$serr"
 }
