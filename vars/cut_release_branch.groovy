@@ -7,7 +7,7 @@ def call(String version, String branch_from) {
     throw new Exception("Invalid version")
   }
   //Execute bash script, catch and print output and errors
-  println "ls".execute().text
+  println "ls -al /tmp/jenkins/workspace".execute().text
   def cmd = ["/bin/bash", "-c", "bash/cut_release_branch.sh", version, branch_from]
   cmd.execute().with{
     def output = new StringWriter()
