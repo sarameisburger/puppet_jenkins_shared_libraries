@@ -7,9 +7,9 @@ def call(String version, String branch_from) {
     throw new Exception("Invalid version")
   }
   //Execute bash script, catch and print output and errors
-  def sout = new StringBuilder(), serr = new StringBuilder()
-  def cmd = ["/bin/bash", "-c", "bash/cut_release_branch.sh", version, branch_from]
-  proc = cmd.execute()
-  proc.consumeProcessOutput(sout, serr)
-  println "Bash output:\n$sout\n\n$serr"
+  node {
+    sh "curl -O https://raw.githubusercontent.com/puppetlabs/puppet_jenkins_shared_libraries/test/cut-release-work/vars/bash/cut_release_branch.sh"
+    sh "chmod +x cut_release_branch.sh"
+    sh "./cut_release_branch.sh $version $branch_from"
+  }
 }
