@@ -1,4 +1,4 @@
-def call(String version, String branch_from) {
+def call(String version) {
 
   if (version =~ '^20[0-9]{2}[.]([0-9]*)[.]([0-9]*)$') {
     println "${version} is a valid version"
@@ -6,10 +6,11 @@ def call(String version, String branch_from) {
     println "${version} is an invalid version"
     throw new Exception("Invalid version")
   }
+
   //Execute bash script, catch and print output and errors
   node {
-    sh "curl -O https://raw.githubusercontent.com/puppetlabs/puppet_jenkins_shared_libraries/master/vars/bash/cut_release_branch.sh"
-    sh "chmod +x cut_release_branch.sh"
-    sh "./cut_release_branch.sh $version $branch_from"
+    sh "curl -O https://raw.githubusercontent.com/puppetlabs/puppet_jenkins_shared_libraries/master/vars/bash/tag_for_release.sh"
+    sh "chmod +x tag_for_release.sh"
+    sh "./tag_for_release.sh $version"
   }
 }
