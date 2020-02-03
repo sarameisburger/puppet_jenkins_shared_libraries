@@ -14,8 +14,7 @@ TAG_X_NUMBER=`echo $CURRENT_TAG | sed 's/\([[:digit:]]\+\)\.[[:digit:]]\+\.[[:di
 TAG_Y_NUMBER=`echo $CURRENT_TAG | sed 's/[[:digit:]]\+\.\([[:digit:]]\+\)\.[[:digit:]]\+\.[[:digit:]]\+-\?.*/\1/'`
 TAG_Z_NUMBER=`echo $CURRENT_TAG | sed 's/[[:digit:]]\+\.[[:digit:]]\+\.\([[:digit:]]\+\)\.[[:digit:]]\+-\?.*/\1/'`
 TAG_FOURTH_DIGIT=`echo $CURRENT_TAG | sed 's/[[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\.\([[:digit:]]\+\)-\?.*/\1/'`
-RELEASE_BRANCH=`git branch --list $PE_VERSION-release`
-
+RELEASE_BRANCH=`git ls-remote | grep $PE_VERSION-release`
 
 verify_digits() {
     re='^[0-9]+$'
@@ -37,6 +36,11 @@ if [ -z "$RELEASE_BRANCH" ]; then
     git checkout $TAG_X_NUMBER.$TAG_Y_NUMBER.x
 else
     git checkout $PE_VERSION-release
+    CURRENT_TAG=`git describe`
+    TAG_X_NUMBER=`echo $CURRENT_TAG | sed 's/\([[:digit:]]\+\)\.[[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+-\?.*/\1/'`
+    TAG_Y_NUMBER=`echo $CURRENT_TAG | sed 's/[[:digit:]]\+\.\([[:digit:]]\+\)\.[[:digit:]]\+\.[[:digit:]]\+-\?.*/\1/'`
+    TAG_Z_NUMBER=`echo $CURRENT_TAG | sed 's/[[:digit:]]\+\.[[:digit:]]\+\.\([[:digit:]]\+\)\.[[:digit:]]\+-\?.*/\1/'`
+    TAG_FOURTH_DIGIT=`echo $CURRENT_TAG | sed 's/[[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\.\([[:digit:]]\+\)-\?.*/\1/'`
 fi
 
 if [ $RELEASE_X_NUMBER != $TAG_X_NUMBER ]; then
