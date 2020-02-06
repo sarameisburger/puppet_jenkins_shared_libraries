@@ -7,7 +7,7 @@ def call(String version, String branch_from) {
     throw new Exception("Invalid version")
   }
   //Execute bash script, catch and print output and errors
-  node {
+  node('worker') {
     sh "curl -O https://raw.githubusercontent.com/puppetlabs/puppet_jenkins_shared_libraries/master/vars/bash/cut_release_branch.sh"
     sh "chmod +x cut_release_branch.sh"
     sh "./cut_release_branch.sh $version $branch_from"
