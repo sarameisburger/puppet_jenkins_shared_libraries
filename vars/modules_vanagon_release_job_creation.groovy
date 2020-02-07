@@ -8,8 +8,10 @@ def call(String version) {
   }
   //Execute bash script, catch and print output and errors
   node('worker') {
-    sh "curl -O https://raw.githubusercontent.com/puppetlabs/puppet_jenkins_shared_libraries/master/vars/bash/modules_vanagon_release_job_creation.sh"
-    sh "chmod +x modules_vanagon_release_job_creation.sh"
-    sh "./modules_vanagon_release_job_creation.sh $version"
+    withCredentials([string(credentialsId: 'githubtoken', variable: 'GITHUB_TOKEN')]) {
+      sh "curl -O https://raw.githubusercontent.com/puppetlabs/puppet_jenkins_shared_libraries/master/vars/bash/modules_vanagon_release_job_creation.sh"
+      sh "chmod +x modules_vanagon_release_job_creation.sh"
+      sh "./modules_vanagon_release_job_creation.sh $version"
+    }
   }
 }
