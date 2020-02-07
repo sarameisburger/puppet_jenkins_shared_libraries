@@ -60,4 +60,4 @@ git add $YAML_FILEPATH
 git commit -m "${JOB_NAME} for ${PE_VERSION}-release"
 git push origin $TEMP_BRANCH
 PULL_REQUEST="$(git show -s --pretty='format:%s%n%n%b' | hub pull-request -b master -F -)"
-echo "Opened mergeup PR for $(pwd): ${PULL_REQUEST}"
+echo "Opened PR for $(pwd): ${PULL_REQUEST}"
