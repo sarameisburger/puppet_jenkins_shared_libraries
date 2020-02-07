@@ -8,7 +8,7 @@ def call(String version) {
   }
   //Execute bash script, catch and print output and errors
   node('worker') {
-    withCredentials([string(credentialsId: 'puppetlabs-jenkins', variable: 'GITHUB_TOKEN')]) {
+    withCredentials([string(credentialsId: 'githubtoken', variable: 'GITHUB_TOKEN')]) {
       sh "curl -O https://raw.githubusercontent.com/puppetlabs/puppet_jenkins_shared_libraries/master/vars/bash/init_release_job_creation.sh"
       sh "chmod +x init_release_job_creation.sh"
       sh "./init_release_job_creation.sh $version"
