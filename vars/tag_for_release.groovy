@@ -11,6 +11,6 @@ def call(String version) {
   node('worker') {
     sh "curl -O https://raw.githubusercontent.com/puppetlabs/puppet_jenkins_shared_libraries/master/vars/bash/tag_for_release.sh"
     sh "chmod +x tag_for_release.sh"
-    sh "./tag_for_release.sh $version"
+    sh "bash tag_for_release.sh $version"
   }
 }
