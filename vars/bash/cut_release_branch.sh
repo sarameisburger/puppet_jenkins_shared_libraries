@@ -9,11 +9,11 @@
 
   git ls-remote | grep "${version}"-release
 
-  if [[ ( "$?" == 0 ) ]]
-  then
-    echo "${version}-release branch already exists. Exiting release creation."
-    exit 1
-  fi
+#  if [[ ( "$?" == 0 ) ]]
+#  then
+#    echo "${version}-release branch already exists. Exiting release creation."
+#    exit 1
+#  fi
 
   if [ -z "$branch_from" ]
   then
