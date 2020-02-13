@@ -32,7 +32,7 @@ echo "
             scm_branch: ${PE_VERSION}-release
             qualifier: '{scm_branch}'
 
-        - 'pe-integration-smoke-upgrade':
+        - 'pe-integration-smoke-upgrade-release':
             pe_family: ${FAMILY}
             scm_branch: ${PE_VERSION}-release
             cinext_preserve_resources: 'true'
