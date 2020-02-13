@@ -10,6 +10,6 @@ def call(String version, String branch_from) {
   node('worker') {
     sh "curl -O https://raw.githubusercontent.com/puppetlabs/puppet_jenkins_shared_libraries/master/vars/bash/cut_release_branch.sh"
     sh "chmod +x cut_release_branch.sh"
-    sh "./cut_release_branch.sh $version $branch_from"
+    sh "bash cut_release_branch.sh $version $branch_from"
   }
 }

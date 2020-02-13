@@ -11,7 +11,7 @@ def call(String version, String codename) {
     withCredentials([string(credentialsId: 'githubtoken', variable: 'GITHUB_TOKEN')]) {
       sh "curl -O https://raw.githubusercontent.com/puppetlabs/puppet_jenkins_shared_libraries/master/vars/bash/integration_release_job_creation.sh"
       sh "chmod +x integration_release_job_creation.sh"
-      sh "./integration_release_job_creation.sh $version $codename"
+      sh "bash integration_release_job_creation.sh $version $codename"
     }
   }
 }
