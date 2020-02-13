@@ -11,7 +11,7 @@ def call(String version) {
     withCredentials([string(credentialsId: 'githubtoken', variable: 'GITHUB_TOKEN')]) {
       sh "curl -O https://raw.githubusercontent.com/puppetlabs/puppet_jenkins_shared_libraries/master/vars/bash/update_statusboard_for_release.sh"
       sh "chmod +x update_statusboard_for_release.sh"
-      sh "./update_statusboard_for_release.sh $version"
+      sh "bash update_statusboard_for_release.sh $version"
     }
   }
 }
