@@ -42,7 +42,7 @@ echo "
               - centos6-64mcd-64agent%2Cpe_postgres.
             <<: *p_${FAMILY_SETTING}_supported_upgrade_defaults
 
-        - 'pe-integration-non-standard-agents':
+        - 'pe-integration-non-standard-agents-release':
             pe_family: ${FAMILY}
             scm_branch: ${PE_VERSION}-release
             pipeline_scm_branch: ${PE_VERSION}-release
