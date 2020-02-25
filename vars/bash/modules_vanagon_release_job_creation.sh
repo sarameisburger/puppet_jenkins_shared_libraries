@@ -16,7 +16,7 @@ git checkout -b $TEMP_BRANCH
 
 # supported_upgrade_defaults logic
 # incase we are basing the release branch off of master
-upgrade_default_name="p_${X_FAMILY}_${Y_FAMILY}_installer_vanagon_settings"
+upgrade_default_name="p_${X_FAMILY}_${Y_FAMILY}_pe_modules_vanagon"
 grep_output=`grep ${upgrade_default_name} $YAML_FILEPATH`
 FAMILY_SETTING="${X_FAMILY}_${Y_FAMILY}"
 if [ -z "$grep_output" ]; then
