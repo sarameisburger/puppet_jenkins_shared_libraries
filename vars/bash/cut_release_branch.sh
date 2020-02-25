@@ -1,7 +1,7 @@
-#USAGE: ./cut_release_branch.sh <version> <branch_from>
+#USAGE: ./cut_release_branch.sh <version> <codename>
 
 version=$1
-branch_from=$2
+codename=$2
 
 rm -rf ./${GITHUB_PROJECT}
 git clone git@github.com:puppetlabs/${GITHUB_PROJECT} ./${GITHUB_PROJECT}
@@ -15,24 +15,18 @@ then
   exit 1
 fi
 
-if [ -z "$branch_from" ]
+git checkout ${codename}
+if [[ ("$?" == 0) ]]
 then
-  FAMILY=`echo ${version} | sed "s/\(.*\..*\)\..*/\1/"`
-  BRANCH_FOUND=`git branch --list $FAMILY.x`
-
-  # is the X.Y.Z branch isn't created then we're basing inital checkout off of master
-  if [ -z "$BRANCH_FOUND" ]
-  then
-    git checkout master
-  else
-    git checkout ${FAMILY}.x
-  fi
+  git checkout -b ${version}-release
+  git push origin ${version}-release
 else
-  git checkout ${branch_from}
-fi
+  FAMILY=`echo ${version} | sed "s/\(.*\..*\)\..*/\1/"`
 
-git checkout -b ${version}-release
-git push origin ${version}-release
+  git checkout ${FAMILY}.x
+  git checkout -b ${version}-release
+  git push origin ${version}-release
+fi
 
 cd ..
 rm -rf ${GITHUB_PROJECT}

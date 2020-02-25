@@ -1,4 +1,4 @@
-def call(String version, String branch_from) {
+def call(String version, String codename) {
 
   if (version =~ '^20[0-9]{2}[.]([0-9]*)[.]([0-9]*)$') {
     println "${version} is a valid version"
@@ -10,6 +10,6 @@ def call(String version, String branch_from) {
   node('worker') {
     sh "curl -O https://raw.githubusercontent.com/puppetlabs/puppet_jenkins_shared_libraries/master/vars/bash/cut_release_branch.sh"
     sh "chmod +x cut_release_branch.sh"
-    sh "bash cut_release_branch.sh $version $branch_from"
+    sh "bash cut_release_branch.sh $version $codename"
   }
 }
