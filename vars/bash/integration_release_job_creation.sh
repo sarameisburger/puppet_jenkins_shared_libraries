@@ -46,11 +46,13 @@ echo "
             pe_family: ${FAMILY}
             scm_branch: ${PE_VERSION}-release
             pipeline_scm_branch: ${PE_VERSION}-release
+            kickoff_disabled: False
             <<: *p_${FAMILY_SETTING}_non_standard_settings
 
         - 'pe-integration-full-release':
             pe_family: ${FAMILY}
             scm_branch: ${PE_VERSION}-release
+            kickoff_disabled: False
             p_scm_alt_code_name: '${CODENAME}'
             <<: *p_${FAMILY_SETTING}_settings" >> $YAML_FILEPATH
 
