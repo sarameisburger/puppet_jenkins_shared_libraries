@@ -46,13 +46,11 @@ echo "
             pe_family: ${FAMILY}
             scm_branch: ${PE_VERSION}-release
             pipeline_scm_branch: ${PE_VERSION}-release
-            kickoff_disabled: False
             <<: *p_${FAMILY_SETTING}_non_standard_settings
 
         - 'pe-integration-full-release':
             pe_family: ${FAMILY}
             scm_branch: ${PE_VERSION}-release
-            kickoff_disabled: False
             p_scm_alt_code_name: '${CODENAME}'
             <<: *p_${FAMILY_SETTING}_settings
             p_proxy_genconfig_extra: '--pe_dir=https://artifactory.delivery.puppetlabs.net/artifactory/generic_enterprise__local/${FAMILY}/release/ci-ready/'" >> $YAML_FILEPATH
